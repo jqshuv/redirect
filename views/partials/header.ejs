@@ -1,0 +1,54 @@
+<!--
+ Copyright (c) 2023 Joshua Schmitt
+ 
+ This software is released under the MIT License.
+ https://opensource.org/licenses/MIT
+-->
+
+<script>
+    function submitThis(e) {
+        let xhttp = new XMLHttpRequest(), data = "location=" + document.getElementById("location").value;
+        document.getElementById("limited-text").hidden = true;
+                document.getElementById("ready-text").hidden = true;
+
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200){
+                document.getElementById("ready-redirect").innerHTML = "short.it/" + JSON.parse(this.responseText).short;
+                document.getElementById("ready-redirect").href = JSON.parse(this.responseText).short;
+                document.getElementById("ready-text").hidden = false;
+            } else if (this.readyState == 4 && this.status == 429) {
+                document.getElementById("ready-text").hidden = true;
+                document.getElementById("limited-text").hidden = false;
+            }
+        };
+        xhttp.open("POST", "/demo", true);
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send(data);
+    }
+</script>
+
+<div class="container pt-4 pt-xl-5">
+    <div class="row pt-5">
+        <div class="col-md-8 text-center text-md-start mx-auto">
+            <div class="text-center">
+                <h1 class="display-4 fw-bold mb-5">redirect.&nbsp;<span class="underline">now</span>.</h1>
+                <p class="fs-5 text-muted mb-5">Metus quisque ultricies vehicula proin, magna nullam.</p>
+                <form class="d-flex justify-content-center flex-wrap" data-bs-theme="light">
+                    <div class="shadow-lg mb-3"><input class="form-control" id="location" type="url" name="location" placeholder="Loooong URL"></div>
+                    <div class="shadow-lg mb-3"><button class="btn btn-primary" onclick="submitThis(this)" type="reset">SHORT</button></div>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-8 text-center text-md-start mx-auto">
+            <div class="text-center" id="ready-text" hidden>
+                <p class="fs-5 text-success mb-5">Your link is ready!&nbsp;<a id="ready-redirect" href="#" target="_blank">linkhere</a></p>
+            </div>
+            <div class="text-center" id="limited-text" hidden>
+                <p class="fs-5 text-danger mb-5">Slow down! You're already being rate limited. Learn more&nbsp;<a href="faq">here</a>.</p>
+            </div>
+        </div>
+        <div class="col-12 col-lg-10 mx-auto">
+            <div class="text-center position-relative"><img class="img-fluid" src="assets/img/illustrations/meeting.svg?h=c663f8d8c612bee13c84963c242e37c8" style="width: 800px;"></div>
+        </div>
+    </div>
+</div>

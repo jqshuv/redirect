@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  redis:
+    image: jqcr.gq/m/redis:alpine
+    ports:
+      - 6379:6379
+    volumes:
+      - ./redis-data:/data
+    command: redis-server --appendonly yes
+
+  mysql:
+    image: jqcr.gq/m/mariadb:latest
+    ports:
+      - 3306:3306
+    volumes:
+      - ./mysql-data:/var/lib/mysql
+    environment:
+      MARIADB_ROOT_PASSWORD: root
+      MARIADB_DATABASE: shortit
+      MARIADB_USER: shortit
+      MARIADB_PASSWORD: shortit

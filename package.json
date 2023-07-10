@@ -1,0 +1,30 @@
+{
+  "name": "shortit",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@fingerprintjs/fingerprintjs": "^3.4.2",
+    "@quelabs/quelib": "^1.1.0",
+    "body-parser": "^1.20.2",
+    "cloudflare-express": "^1.0.1",
+    "cors": "^2.8.5",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "express-favicon": "^2.0.4",
+    "express-fingerprint": "^1.2.2",
+    "express-jwt": "^8.4.1",
+    "express-rate-limit": "^6.7.1",
+    "mariadb": "^3.2.0",
+    "rate-limit-redis": "^3.0.2",
+    "redis": "^4.6.7",
+    "sequelize": "^6.32.1"
+  }
+}
