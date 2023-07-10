@@ -1,0 +1,18 @@
+/**
+ * Copyright (c) 2023 Joshua Schmitt
+ * 
+ * This software is released under the MIT License.
+ * https://opensource.org/licenses/MIT
+ */
+
+
+body {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+footer{
+    margin-top: auto;
+}
+

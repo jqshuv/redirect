@@ -20,19 +20,3 @@ services:
       MARIADB_DATABASE: shortit
       MARIADB_USER: shortit
       MARIADB_PASSWORD: shortit
-
-  redirect:
-    image: jqcr.gq/redirect:latest
-    depends_on:
-      - redis
-      - mysql
-    ports:
-      - 3000:3000
-    environment:
-      REDIS_HOST: redis
-      REDIS_PORT: 6379
-      MYSQL_HOST: mysql
-      MYSQL_PORT: 3306
-      MYSQL_USER: shortit
-      MYSQL_PASSWORD: shortit
-      MYSQL_DATABASE: shortit
