@@ -28,7 +28,7 @@ const Url = sequelize.define('urls', {
 Url.sync().then(() => { console.log("Urls synced") }).catch(console.error)
 
 const redisClient = createClient({
-  url: 'redis://redis:6380'
+  url: 'redis://redis:6379'
 });
 redisClient.connect().catch(console.error).then(() => { console.log("Connected to Redis") })
 
