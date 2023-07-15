@@ -27,7 +27,9 @@ const Url = sequelize.define('urls', {
 
 Url.sync().then(() => { console.log("Urls synced") }).catch(console.error)
 
-const redisClient = createClient();
+const redisClient = createClient({
+  url: 'redis://redis:6380'
+});
 redisClient.connect().catch(console.error).then(() => { console.log("Connected to Redis") })
 
 const limiter = rateLimit({
