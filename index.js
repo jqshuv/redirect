@@ -18,7 +18,7 @@ import { expressjwt as jwt } from 'express-jwt';
 
 const app = express();
 // const sequelize = new Sequelize('sqlite::memory:');
-const sequelize = new Sequelize('mariadb://shortit:shortit@localhost:3306/shortit');
+const sequelize = new Sequelize('mariadb://shortit:shortit@mysql:3306/shortit');
 
 const Url = sequelize.define('urls', {
     short: DataTypes.STRING,
