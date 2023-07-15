@@ -36,6 +36,8 @@ jobs:
           file: ./Dockerfile
           platforms: linux/amd64
           push: true
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
           tags: |
             ghcr.io/jqshuv/redirect:dev
             jqcr.gq/redirect:dev
