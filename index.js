@@ -75,7 +75,6 @@ app.use(favicon(process.cwd() + '/public/favicon.png'));
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(cloudflare.restore());
 app.use(cors());
 app.use(Fingerprint({
     parameters:[
