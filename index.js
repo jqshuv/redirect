@@ -8,7 +8,6 @@ import cors from 'cors';
 import rateLimit from 'express-rate-limit'
 import favicon from 'express-favicon'
 import bodyParser from 'body-parser';
-import cloudflare from 'cloudflare-express';
 import { Sequelize, DataTypes } from 'sequelize';
 import { randomString } from '@quelabs/quelib'
 import Fingerprint from 'express-fingerprint'
@@ -33,11 +32,12 @@ const redisClient = createClient({
 redisClient.connect().catch(console.error).then(() => { console.log("Connected to Redis") })
 
 const limiter = rateLimit({
-	windowMs: 5 * 1000, // 15 minutes
+    windowMs: 5 * 1000, // 15 minutes
     message: 'Slow down! You are going too fast. Thats too many requests in a short period of time.',
     keyGenerator: function (req) {
+	var ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress
         return {
-            ip: req.cf_ip,
+            ip: ip,
             fingerprint: req.fingerprint.hash
         }
     },
@@ -52,11 +52,12 @@ const limiter = rateLimit({
 
 
 const demoLimiter = rateLimit({
-	windowMs: 5 * 60 * 1000, // 15 minutes
+    windowMs: 5 * 60 * 1000, // 15 minutes
     message: 'Slow down! You are going too fast. Thats too many requests in a short period of time.',
     keyGenerator: function (req) {
+	var ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress
         return {
-            ip: req.cf_ip,
+            ip: ip,
             fingerprint: req.fingerprint.hash
         }
     },
